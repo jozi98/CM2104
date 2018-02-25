@@ -57,7 +57,7 @@ html {
 
 @media only screen and (min-width:600px)and (min-width:768px) {
  .col-3{width:100%}
- .col-6{width:50%;}
+ .col-6{width:25%;}
 }
 
 @media only screen and (min-width:768px) {
