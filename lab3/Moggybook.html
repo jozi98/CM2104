@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <script>
+  function testResults(form){
+var username= form.username.value;
+var breed = form.breed.value;
+var email = form.email.value;
+var homepage = form.homepage.value;
+var dob = form.dOB.value;
+var about = form.about.value
+alert(username+""+breed+""+email+""+homepage+""+dob+""+about);
+}
+
+  </script>
+</head>
+<body>
+  <h1>Moggybook</h1>
+  <form>
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr>
+        <td>Username:</td>
+        <td>
+          <input type="textarea" name="username">
+        </td>
+      </tr>
+    <!-- ------------------------------------------------- -->
+      <tr>
+        <td>Breed:</td>
+        <td>
+          <input type="textarea" name="breed">
+        </td>
+      </tr>
+      <!-- ------------------------------------------------- -->
+      <tr>
+        <td>email:</td>
+        <td>
+          <input type="textarea" name="email">
+        </td>
+      </tr>
+      <!-- ------------------------------------------------- -->
+      <tr>
+        <td>Homepage:</td>
+        <td>
+          <input type="textarea" name="homepage">
+        </td>
+      </tr>
+      <!-- ------------------------------------------------- -->
+
+      <tr>
+        <td>Date Of Birth:</td>
+        <td>
+          <input type="textarea" name="dOB">
+        </td>
+      </tr>
+        <!-- ------------------------------------------------- -->
+        <tr>
+          <td>About</td>
+          <td>
+            <input type="textarea" name="about">
+          </td>
+        </tr>
+
+      </table>
+
+      <input type="submit" name="submit" value="Submit" onClick= "testResults(this.form)"/>
+    </form>
+  </body>
+  </html>
