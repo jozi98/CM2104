@@ -51,9 +51,10 @@ html {
 }
 
 /* For mobile phones; */
-/* [class*="col-"]{
+[class*="col-"]{
   width:100%;
-} */
+  background-color: black;
+}
 
 @media only screen and (min-width:600px)and (max-width:768px) {
  .col-3{width:100%;}
