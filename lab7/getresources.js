@@ -7,7 +7,7 @@ $(document).ready(function () {
       displayResources.text('Loading data from JSON source...');
 
       $.ajax({
-        type:"GET",
+        type:"GET", 
         url:"resources.json",
         success:function(result)
         {
