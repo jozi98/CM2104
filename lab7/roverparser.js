@@ -2,7 +2,7 @@
  $(document).ready(function () {
 
   $('#retrieve-data').click(function () {
-  console.log(hello);
+    
   var displayResources = $('#display-data');
 
   displayResources.text('Loading Rover Data');
