@@ -20,11 +20,11 @@
   {
     output+="<tr><td>" + photos[i].rover.name + "</td><td>"
     + photos[i].camera.full_name + "</td><td>"
-    + photos[i].img_src + "</td></td>"
+    + photos[i].img_src + "</td><td>"
     + "1" + "</td><td>"
 
     + photos[i].rover.launch_date + "</td></tr>";
-      alert(photos[i].rover.launch_date);
+    
   }
   output+="</tbody></table>";
 
