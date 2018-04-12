@@ -7,7 +7,7 @@
   displayResources.text('Loading Rover Data');
 
   $.ajax({
-  type: "GET",
+  type: "GET", 
   url: "roverdata.json",
   success: function(result)
   {
