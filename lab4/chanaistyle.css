@@ -53,10 +53,9 @@ html {
 /* For mobile phones; */
 [class*="col-"]{
   width:100%;
-  
 }
 
-@media only screen and (min-width:768px) {
+@media only screen and (min-width:767px) {
 /* For desktop  */
 .col-3{width:25%;background-color: green;}
 .col-6{width:50%;}
