@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
 
     $('#retrieve-resources').click(function(){
