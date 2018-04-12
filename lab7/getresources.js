@@ -1,9 +1,9 @@
-  $(document).ready(function()){
+  $(document).ready(function(){
 
-    $('#retrieve-resources').click(function()){
+    $('#retrieve-resources').click(function(){
 
       var displayResources = $('#display-resources');
-      displayResources.text('Loading data from JSON source');
+      displayResources.text('Loading data from JSON source...');
 
       $.ajax({
         type:"GET",
@@ -19,7 +19,7 @@
           displayResources.html(output);
           $("table").addClass("table");
         }
-      })
-    }
+      });
+    });
 
-  }
+  });
