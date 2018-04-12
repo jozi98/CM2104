@@ -21,6 +21,7 @@
     + photos[i].camera.full_name + "</td><td>"
     + photos[i].img_src + "</td><td>";
     + photos[i].earth_date + "</td><td>";
+    console.log(photos[i].rover.launch_date);
     + photos[i].rover.launch_date + "</td></tr>";
   }
   output+="</tbody></table>";
