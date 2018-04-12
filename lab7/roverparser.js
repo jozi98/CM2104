@@ -21,7 +21,7 @@
     output+="<tr><td>" + photos[i].rover.name + "</td><td>"
     + photos[i].camera.full_name + "</td><td>"
     + photos[i].img_src + "</td></td>"
-    + "hello" + "</td><tr>";
+    + "1" + "</td></tr>";
     // + photos[i].rover.launch_date + "</td></tr>";
   }
   output+="</tbody></table>";
