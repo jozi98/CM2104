@@ -11,7 +11,7 @@ $(document).ready(function () {
         url:"resources.json",
         success:function(result)
         {
-          alert(result);
+
           console.log(result);
           var output = "<table><thead><tr><th>Name</th><th>Provider</th><th>URL</th></thead><tbody>";
           for(var i in result){
