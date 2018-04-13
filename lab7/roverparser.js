@@ -18,11 +18,11 @@
 
   for (var i in photos)
   {
-    var imgOut = "photos[i].img_src";
-    alert(imgOut);
+    // var imgOut = photos[i].img_src;
+    // alert('imgOut');
     output+="<tr><td>" + photos[i].rover.name + "</td><td>"
     + photos[i].camera.full_name + "</td><td>"
-    // + '<img src = "">'   + "</td><td>"
+     + '<img src = 'imgOut'>'   + "</td><td>"
     +  photos[i].earth_date  + "</td><td>"
     + photos[i].rover.launch_date + "</td></tr>";
 
