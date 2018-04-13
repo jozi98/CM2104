@@ -25,9 +25,7 @@
     + photos[i].rover.launch_date + "</td></tr>";
 
   }
-  <style>
 
-  </style>
   output+="</tbody></table>";
 
   displayResources.html(output);
