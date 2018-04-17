@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
-
 var Twitter = require('twitter');
+
 var client = new Twitter({
  consumer_key: 'wsk2GCAxUMM9i4eu4UyFyWrdF',
  consumer_secret: 'GYIJg9BaBeQY0E5e5g1KHBf3vm9Tlj6Vq51a0M36PbEsnF4pXR',
@@ -14,10 +14,9 @@ app.get('/', function(req, res){
   var params = {screen_name: 'nodejs'};
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
    if (!error) {
-//  res.send(tweets);
-   }
+console.log(tweets);
+  }
   });
- res.send("Hello world! by express & twitter");
  res.send("Hello world! by express & twitter");
 
 });
