@@ -11,6 +11,6 @@ var client = new Twitter({
 
 app.use(express.static('public'))
 app.get('/', function(req, res){
- res.send("Hello world! by express");
+ res.send("Hello world! by express & twitter");
 });
 app.listen(8080);
