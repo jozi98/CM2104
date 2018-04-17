@@ -17,7 +17,7 @@ app.get('/', function(req, res){
      res.send("erro occured when loading tweets");
   }
   else{
-    res.send(tweets);
+    console.log(tweets);
   }
   });
  res.send("Hello world! by express & twitter");
