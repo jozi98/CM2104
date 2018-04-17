@@ -26,7 +26,7 @@ var y = parseInt(req.query.y);
 app.get('calc',function(req, res){
   var x = parseInt(req.query.x);
   var y = parseInt(req.query.y);
-  var operator= req.query.operator;
+  //var operator= req.query.operator;
   res.send("X " + operator + "Y=" +(x+y));
 
 
