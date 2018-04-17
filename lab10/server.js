@@ -8,3 +8,11 @@ app.listen(8080);
 app.get('/test',function(req,res){
   res.send("this is route 2");
 });
+
+//var http = require('http');
+var knockknock = require('knock-knock-jokes');
+app.get('/joke',function(req,res){
+  var randomJoke = knockknock();
+  res.send(randomJoke);
+  //res.send ("test");
+});
