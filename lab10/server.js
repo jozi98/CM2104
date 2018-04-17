@@ -28,8 +28,22 @@ app.get('/calc',function(req, res){
   var y = parseInt(req.query.y);
   var operator = req.query;
 
+if(operator=="add"){
+  res.send("X + Y="+(x+y));
+}
+else if(operator=="sub"){
+  res.send("X - Y="+(x-y));
+}
 
-   res.send("X "+operator+"Y="+(x*y));
+else if(operator=="mul"){
+    res.send("X*Y="+(x*y));
+}
+
+else if(operator=="div"){
+    res.send("X / Y="+(x/y));
+}
+
+
 
 
 });
