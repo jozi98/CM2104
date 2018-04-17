@@ -30,4 +30,4 @@ app.get('calc',function(req, res){
   res.send("X " + operator + "Y=" +(x+y));
 
 
-}
+})
