@@ -3,7 +3,6 @@
 var express = require('express');
 var app = express();
 app.get('/', function(req, res){
-  app.use(express.static('public'));
 
  res.send("Hello world! by express");
 });
@@ -47,7 +46,6 @@ else if(operator=="div"){
     res.send("X / Y="+(x/y));
 }
 
-
-
-
 });
+
+app.use(express.static('public'));
