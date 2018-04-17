@@ -29,4 +29,4 @@ app.get('calc',function(req, res){
    res.send("X + Y="+(x+y));
 
 
-})
+});
