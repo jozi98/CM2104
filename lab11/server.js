@@ -14,11 +14,9 @@ app.get('/', function(req, res){
   var params = {screen_name: 'nodejs'};
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
    if (!error) {
-     res.send("erro occured when loading tweets");
+     console.log(tweets);
   }
-  else{
-    console.log(tweets);
-  }
+
   });
  res.send("Hello world! by express & twitter");
 
