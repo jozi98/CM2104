@@ -17,6 +17,6 @@ app.get('/', function(req, res){
 //  res.send(tweets);
    }
   });
- //res.send("Hello world! by express & twitter");
+ res.send("Hello world! by express & twitter");
 });
 app.listen(8080);
