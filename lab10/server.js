@@ -48,7 +48,7 @@ else if(operator=="div"){
 
 });
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 app.get('/getform', function(req, res){
 var name = req.query.name;
