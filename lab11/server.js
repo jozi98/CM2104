@@ -13,7 +13,7 @@ app.use(express.static('public'))
 app.get('/', function(req, res){
   var params = {screen_name: 'nodejs'};
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
-   if (error) {
+   if (!error) {
      res.send("erro occured when loading tweets");
   }
   else{
