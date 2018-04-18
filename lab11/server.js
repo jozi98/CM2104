@@ -16,7 +16,7 @@ app.get('/getform', function(req, res){
 
 var name = req.query.name;
 
-  var params = {screen_name: 'nodejs'};
+  var params = {screen_name: name};
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
    if (!error) {
      var output = "";
