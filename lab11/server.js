@@ -34,9 +34,13 @@ var name = req.query.name;
 
 });
 
+
+
+
 app.get('/tweetsjson', function(req, res) {
+  var screen_name = req.query.name;
   var params = {
-    screen_name: 'nodejs'
+    screen_name: screen_name
   };
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
     if (!error) {
