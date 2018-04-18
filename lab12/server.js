@@ -38,7 +38,7 @@ app.get('/all', function(req, res) {
 });
 
 app.post('/quotes',function(req,res){
-  db.collection('quotes').save(req,body,function(err,resul){
+  db.collection('quotes').save(req.body,function(err,resul){
     if (err) throw err;
     console.log('saveed to database');
     res.redirect('/');
