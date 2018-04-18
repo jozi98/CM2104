@@ -50,11 +50,11 @@ app.get('/allquotes', function(req, res) {
       output += "<p>" + result[i].quote + "</p>"
       output += "</div>"
     }
-    res.send(output);
+    res.render('index.ejs',{quotes:result});
   });
 });
 
-app.post('/quotes', function (req, res) {
+app.post('/add', function (req, res) {
   db.collection('quotes').save(req.body, function(err, result) {
     if (err) throw err;
     console.log('saved to database')
@@ -62,7 +62,7 @@ app.post('/quotes', function (req, res) {
   })
 })
 
-app.post('/search', function(req, res) {
+app.post('/filter', function(req, res) {
   db.collection('quotes').find(req.body).toArray(function(err, result) {
     if (err) throw err;
 
@@ -74,8 +74,7 @@ app.post('/search', function(req, res) {
       output += "<p>" + result[i].quote + "</p>"
       output += "</div>"
     }
-    res.send(output);
-  });
+  res.render('index.ejs',{quotes:result});  });
 });
 
 app.post('/delete', function(req, res) {

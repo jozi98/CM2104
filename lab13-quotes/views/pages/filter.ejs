@@ -6,6 +6,13 @@
 
 </head>
 
+
+<header>
+
+<% include ../partials/main %>
+
+</header>
+
 <body class="container">
 
 
@@ -17,6 +24,26 @@
         <button type="submit">Submit</button>
       </form>
     </div>
+
+    <ul>
+     <% result.forEach(function(quote) { %>
+     <li>
+     <%= quote.name %> -
+     <%= quote.quote %>
+     </li>
+     <% }); %>
+     </ul>
+
   </main>
+
+  <footer>
+
+
+    <% include ../partials/footer %>
+
+
+  </footer>
+
+
 </body>
 </html>
