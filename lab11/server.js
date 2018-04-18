@@ -24,7 +24,9 @@ var name = req.query.name;
       output += "<p>" + tweets[t].text + "</p>"
       output += "</div>";
       }
-     res.send(output);  }
+
+     res.send(output);
+    }
 
   });
  //res.send("Hello world! by express & twitter");
