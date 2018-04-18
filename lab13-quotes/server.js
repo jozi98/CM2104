@@ -42,12 +42,7 @@ app.get('/update', function(req,res) {
 app.get('/allquotes', function(req, res) {
   db.collection('quotes').find().toArray(function(err, result) {
     if (err) throw err;
-    //console.log(result);
-
-result.forEach(function(output){
-  res.send(output.name);
-});
-
+    console.log(result);
 
     var output = "<h1>All the quotes</h1>";
     for (var i = 0; i < result.length; i++) {
