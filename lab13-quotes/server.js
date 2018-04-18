@@ -53,7 +53,7 @@ app.get('/allquotes', function(req, res) {
     res.render('pages/index',{result:result
   });
 });
-}
+});
 
 // app.post('/add', function (req, res) {
 //   db.collection('quotes').save(req.body, function(err, result) {
