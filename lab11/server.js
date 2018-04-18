@@ -10,11 +10,34 @@ var client = new Twitter({
 });
 
 app.use(express.static('public'))
-app.get('/getform', function(req, res){
+app.get('/tweetsjson', function(req, res) {
+ var params = {
+ screen_name: 'nodejs'
+ };
+ client.get('statuses/user_timeline', params, function(error, tweets,
+response) {
+ if (!error) {
+ var json = [];
+ for (var i = 0; i < tweets.statuses.length; i++) {
+ json.push({
+ name: tweets.statuses[i].user.name,
+ text: tweets.statuses[i].text
+ });
+ }
+ res.send(JSON.stringify(json));
+ }
+ });
+});
+
+
+
+
+
+app.get('/', function(req, res){
 
 var name = req.query.name;
 
-  var params = {screen_name: name};
+  var params = {screen_name: 'nodejs'};
   client.get('statuses/user_timeline', params, function(error, tweets, response) {
    if (!error) {
      var output = "";
@@ -24,9 +47,7 @@ var name = req.query.name;
       output += "<p>" + tweets[t].text + "</p>"
       output += "</div>";
       }
-
-     res.send(output);
-    }
+     res.send(output);  }
 
   });
  //res.send("Hello world! by express & twitter");
