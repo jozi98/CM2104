@@ -74,7 +74,7 @@ app.post('/filter', function(req, res) {
       output += "<p>" + result[i].quote + "</p>"
       output += "</div>"
     }
-  res.render('index.ejs',{quotes:result});  });
+  res.render('pages/filter',{quotes:result});  });
 });
 
 app.post('/delete', function(req, res) {
