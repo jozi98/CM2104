@@ -45,7 +45,7 @@ app.get('/allquotes', function(req, res) {
     //console.log(result);
 
 result.forEach(function(output){
-  console.log(output.name);
+  res.send(output.name);
 });
 
 
