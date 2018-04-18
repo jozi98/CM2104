@@ -46,7 +46,7 @@ app.get('/allquotes', function(req, res) {
 
 result.forEach(function(output){
   console.log(output.name);
-}
+});
 
 
     var output = "<h1>All the quotes</h1>";
