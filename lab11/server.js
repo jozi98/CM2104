@@ -10,7 +10,7 @@ var client = new Twitter({
 });
 
 app.use(express.static('public'))
-app.get('/', function(req, res){
+app.get('/getform', function(req, res){
 
 var name = req.query.name;
 
