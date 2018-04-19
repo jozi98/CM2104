@@ -65,7 +65,7 @@ app.post('/add', function (req, res) {
 app.post('/filtered', function(req, res) {
   db.collection('quotes').find(req.body).toArray(function(err, result) {
     if (err) throw err;
-
+    console.log(result);
     var output = "<h1>quotes by" +req.body.name+ "</h1>";
 
     for (var i = 0; i < result.length; i++) {
