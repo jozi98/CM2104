@@ -19,7 +19,7 @@ function getResultsFromOMDB(searchTerms){
 }
 
     function addResultsTitles(jsondata){
-
+$('#results').empty();
 
 
    for(var i = 0;i<10;i++){
@@ -30,13 +30,13 @@ function getResultsFromOMDB(searchTerms){
 
         $.getJSON(url,function(jsondata){
 
-htmlstring +="<li>"+jsondata.Title+"</li>"+ '<a href="'+jsondata.Poster+'">Poster-Link</a>'+"<br>"+jsondata.Year+"</br>"+"<br>"+jsondata.Type+"</br>"+'<a href="http://www.imdb.com/title/'+jsondata.imdbID+' "/" ">imdb Link</a>';
+$('#results').append("<li>"+jsondata.Title+"</li>"+ '<a href="'+jsondata.Poster+'">Poster-Link</a>'+"<br>"+jsondata.Year+"</br>"+"<br>"+jsondata.Type+"</br>"+'<a href="http://www.imdb.com/title/'+jsondata.imdbID+' "/" ">imdb Link</a>');
 
 
               })
               }
-console.log(htmlstring);
-      $('#results').html(htmlstring);
+//console.log(htmlstring);
+      //.html(htmlstring);
 
       }
 
