@@ -62,7 +62,7 @@ app.post('/add', function (req, res) {
   })
 })
 
-app.get('/filter', function(req, res) {
+app.post('/doFiltered', function(req, res) {
   db.collection('quotes').find(req.body).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
