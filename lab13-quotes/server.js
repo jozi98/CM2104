@@ -62,33 +62,33 @@ app.post('/add', function (req, res) {
   })
 })
 
-// app.post('/filter', function(req, res) {
-//   db.collection('quotes').find(req.body).toArray(function(err, result) {
-//     if (err) throw err;
-//
-//     var output = "<h1>quotes by" +req.body.name+ "</h1>";
-//
-//     for (var i = 0; i < result.length; i++) {
-//       output += "<div>"
-//       output += "<h3>" + result[i].name + "</h3>"
-//       output += "<p>" + result[i].quote + "</p>"
-//       output += "</div>"
-//     }
-//   res.render('pages/filter',{quotes:result});  });
-// });
+app.post('/filter', function(req, res) {
+  db.collection('quotes').find(req.body).toArray(function(err, result) {
+    if (err) throw err;
 
-// app.post('/delete', function(req, res) {
-//   db.collection('quotes').deleteOne(req.body, function(err, result) {
-//     if (err) throw err;
-//     res.redirect('/');
-//   });
-// });
+    var output = "<h1>quotes by" +req.body.name+ "</h1>";
 
-// app.post('/update', function(req, res) {
-//   var query = { quote: req.body.quote };
-//   var newvalues = { $set: {name: req.body.newname, quote: req.body.newquote } };
-//   db.collection('quotes').updateOne(query,newvalues, function(err, result) {
-//     if (err) throw err;
-//     res.redirect('/');
-//   });
-// });
+    for (var i = 0; i < result.length; i++) {
+      output += "<div>"
+      output += "<h3>" + result[i].name + "</h3>"
+      output += "<p>" + result[i].quote + "</p>"
+      output += "</div>"
+    }
+  res.render('pages/filter',{quotes:result});  });
+});
+
+app.post('/delete', function(req, res) {
+  db.collection('quotes').deleteOne(req.body, function(err, result) {
+    if (err) throw err;
+    res.redirect('/');
+  });
+});
+
+app.post('/update', function(req, res) {
+  var query = { quote: req.body.quote };
+  var newvalues = { $set: {name: req.body.newname, quote: req.body.newquote } };
+  db.collection('quotes').updateOne(query,newvalues, function(err, result) {
+    if (err) throw err;
+    res.redirect('/');
+  });
+});
