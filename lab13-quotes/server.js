@@ -44,7 +44,19 @@ app.get('/delete', function(req,res) {
   res.render('pages/delete')
 });
 app.get('/filter', function(req,res) {
-  res.render('pages/filter')
+  db.collection('quotes').find("Kris Gethin").toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    var output = "<h1>quotes by" +req.body.name+ "</h1>";
+
+    for (var i = 0; i < result.length; i++) {
+      output += "<div>"
+      output += "<h3>" + result[i].name + "</h3>"
+      output += "<p>" + result[i].quote + "</p>"
+      output += "</div>"
+    }
+  res.render('pages/filter',{quotes:result});
+});
 });
 app.get('/update', function(req,res) {
   res.render('pages/update')
@@ -63,19 +75,7 @@ app.post('/add', function (req, res) {
 })
 
 app.post('/filtered', function(req, res) {
-  db.collection('quotes').find(req.body).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    var output = "<h1>quotes by" +req.body.name+ "</h1>";
 
-    for (var i = 0; i < result.length; i++) {
-      output += "<div>"
-      output += "<h3>" + result[i].name + "</h3>"
-      output += "<p>" + result[i].quote + "</p>"
-      output += "</div>"
-    }
-  res.render('filter.ejs',{quotes:result});
-});
 });
 //
 // app.post('/delete', function(req, res) {
