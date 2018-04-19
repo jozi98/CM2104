@@ -19,7 +19,7 @@ MongoClient.connect(url, function(err, database) {
   console.log('listening');
 });
 
-//you need to complete these
+
 
 app.get('/', function(req,res) {
     db.collection('quotes').find().toArray(function(err, result) {
