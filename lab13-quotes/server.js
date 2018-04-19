@@ -22,7 +22,6 @@ MongoClient.connect(url, function(err, database) {
 //you need to complete these
 
 app.get('/', function(req,res) {
-  app.get('/allquotes', function(req, res) {
     db.collection('quotes').find().toArray(function(err, result) {
       if (err) throw err;
       console.log(result);
@@ -37,7 +36,7 @@ app.get('/', function(req,res) {
       res.render('pages/index',{quotes:result});
   });
   });
-});
+
 app.get('/add', function(req,res) {
   res.render('pages/add')
 });
