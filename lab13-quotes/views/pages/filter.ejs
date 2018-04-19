@@ -28,7 +28,14 @@
 
     </div>
 
-
+    <ul>
+     <% quotes.forEach(function(quotable) { %>
+     <li>
+     <%= quotable.name %> -
+     <%= quotable.quote %>
+     </li>
+     <% }); %>
+     </ul>
 
 
 
