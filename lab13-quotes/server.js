@@ -44,7 +44,7 @@ app.get('/delete', function(req,res) {
   res.render('pages/delete')
 });
 app.get('/filter', function(req,res) {
-  db.collection('quotes').find('Kris Gethin').toArray(function(err, result) {
+  db.collection('quotes').find(req.body).toArray(function(err, result) {
     if (err) throw err;
     console.log(result);
     var output = "<h1>quotes by" +req.body.name+ "</h1>";
