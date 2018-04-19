@@ -22,6 +22,7 @@
           <h1>Hi <%= user.name.first %></h1>
           <!-- get the medium picture -->
           <h1> Pasword <%=user.login.password %> </h1>
+
           <img src="<%= user.picture.medium %>" class="img-circle" />
           <!-- get the username -->
           <h2>username: <%= user.login.username %></h2>
@@ -42,6 +43,9 @@
 
       <div class="col-sm-4">
         <div class="well">
+
+          <img src = "<%=user.picture.thumbnail %>" class = "thumb"/>
+
           <h3>Details</h3>
           <h3>Address</h3>
           <ul>
