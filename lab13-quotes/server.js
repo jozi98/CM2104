@@ -74,7 +74,7 @@ app.get('/doFiltered', function(req, res) {
       output += "<p>" + result[i].quote + "</p>"
       output += "</div>"
     }
-    res.render('pages/filter',{quotes:result});
+    //console.log()
 });
 });
 //
