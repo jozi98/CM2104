@@ -54,13 +54,13 @@ app.get('/update', function(req,res) {
 
 
 
-// app.post('/add', function (req, res) {
-//   db.collection('quotes').save(req.body, function(err, result) {
-//     if (err) throw err;
-//     console.log('saved to database')
-//     res.redirect('/')
-//   })
-// })
+app.post('/add', function (req, res) {
+  db.collection('quotes').save(req.body, function(err, result) {
+    if (err) throw err;
+    console.log('saved to database')
+    res.redirect('/')
+  })
+})
 
 // app.post('/filter', function(req, res) {
 //   db.collection('quotes').find(req.body).toArray(function(err, result) {
