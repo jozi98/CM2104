@@ -48,7 +48,8 @@ app.get('/', function(req, res) {
     if (err) throw err;
     //the result of the query is sent to the users page as the "users" array
     res.render('pages/users', {
-      users: result
+      users: result,
+      currentuser : req.session.currentuser
     })
   });
 
@@ -114,7 +115,8 @@ app.post('/dologin', function(req, res) {
     //if there is no result, redirect the user back to the login system as that username must not exist
     if(!result){res.redirect('/login');return}
     //if there is a result then check the password, if the password is correct set session loggedin to true and send the user to the index
-    if(result.login.password == pword){ req.session.loggedin = true; res.redirect('/') }
+    if(result.login.password == pword){ req.session.loggedin = true; req.session.currentuser = uname;
+      res.redirect('/') }
     //otherwise send them back to login
     else{res.redirect('/login')}
   });
@@ -149,9 +151,11 @@ app.post('/delete', function(req, res) {
 //"picture":{"large":"https://randomuser.me/api/portraits/women/42.jpg","medium":"https://randomuser.me/api/portraits/med/women/42.jpg","thumbnail":"https://randomuser.me/api/portraits/thumb/women/42.jpg"},
 //"nat":"GB"}
 
-app.post('/adduser', function(req, res) {
   //check we are logged in
   if(!req.session.loggedin){res.redirect('/login');return;}
+
+
+
 
   //we create the data string from the form components that have been passed in
 
@@ -174,3 +178,11 @@ var datatostore = {
     res.redirect('/')
   })
 });
+
+app.get('/adduser',function(req,res){
+var name = req.body.
+
+
+
+app.post('/adduser', function(req, res) {
+}
