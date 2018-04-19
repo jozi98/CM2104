@@ -74,7 +74,7 @@ app.post('/filtered', function(req, res) {
       output += "<p>" + result[i].quote + "</p>"
       output += "</div>"
     }
-  res.render('pages/filter',{quotes:result});
+  res.render('filter.ejs',{quotes:result});
 });
 });
 //
