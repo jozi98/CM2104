@@ -23,7 +23,20 @@
         <input type="text" placeholder="name" name="name">
         <button type="submit">Submit</button>
       </form>
+
+      <ul>
+       <% quotes.forEach(function(quotable) { %>
+       <li>
+       <%= quotable.name %> -
+       <%= quotable.quote %>
+       </li>
+       <% }); %>
+       </ul>
     </div>
+
+
+
+
 
 
 
