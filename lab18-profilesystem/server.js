@@ -181,8 +181,3 @@ var datatostore = {
 
 app.get('/adduser',function(req,res){
 var name = req.body.
-
-
-
-app.post('/adduser', function(req, res) {
-}
