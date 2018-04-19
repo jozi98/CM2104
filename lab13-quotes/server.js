@@ -24,7 +24,7 @@ MongoClient.connect(url, function(err, database) {
 app.get('/', function(req,res) {
     db.collection('quotes').find().toArray(function(err, result) {
       if (err) throw err;
-    //  console.log(result);
+      console.log(result);
 
       var output = "<h1>All the quotes</h1>";
       for (var i = 0; i < result.length; i++) {
@@ -44,19 +44,7 @@ app.get('/delete', function(req,res) {
   res.render('pages/delete')
 });
 app.get('/filter', function(req,res) {
-  db.collection('quotes').find(req.body).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-    var output = "<h1>quotes by" +req.body.name+ "</h1>";
-
-    for (var i = 0; i < result.length; i++) {
-      output += "<div>"
-      output += "<h3>" + result[i].name + "</h3>"
-      output += "<p>" + result[i].quote + "</p>"
-      output += "</div>"
-    }
-  res.render('pages/filter',{quotes:result});
-});
+  res.render('pages/filter')
 });
 app.get('/update', function(req,res) {
   res.render('pages/update')
@@ -69,13 +57,25 @@ app.get('/update', function(req,res) {
 app.post('/add', function (req, res) {
   db.collection('quotes').save(req.body, function(err, result) {
     if (err) throw err;
-   console.log('saved to database')
+    console.log('saved to database')
     res.redirect('/')
   })
 })
 
 app.post('/filtered', function(req, res) {
+  db.collection('quotes').find(req.body).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+    var output = "<h1>quotes by" +req.body.name+ "</h1>";
 
+    for (var i = 0; i < result.length; i++) {
+      output += "<div>"
+      output += "<h3>" + result[i].name + "</h3>"
+      output += "<p>" + result[i].quote + "</p>"
+      output += "</div>"
+    }
+    res.redirect('/');
+});
 });
 //
 // app.post('/delete', function(req, res) {
