@@ -19,10 +19,10 @@
       <h2>Quotes!</h2>
 
       <ul>
-       <% result.forEach(function(quotes) { %>
+       <% quotes.forEach(function(quotable) { %>
        <li>
-       <%= quotes.name %> -
-       <%= quotes.quote %>
+       <%= quotable.name %> -
+       <%= quotable.quote %>
        </li>
        <% }); %>
        </ul>
