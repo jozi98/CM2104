@@ -15,7 +15,7 @@ app.use(express.static('public'))
 
 
 function myFunction(){
-
+alert("hello")
   Quagga.init({
       inputStream : {
         name : "Live",
