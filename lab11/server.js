@@ -8,7 +8,7 @@ var app = express();
 //  access_token_key: '980911711422238730-t6bRCpUyYcZFk6RnH6Ct1ra9u51n1SM',
 //  access_token_secret: '6hoVseGhSfbUi4VfXEHMPwb9znmz2DLzp9PaHYytSG1gr'
 // });
-import Quagga from 'quagga'; // ES6
+// import Quagga from 'quagga'; // ES6
 const Quagga = require('quagga').default; // Common JS (important: default)
 
 app.use(express.static('public'))
