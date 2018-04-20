@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% include ../partials/head %>
+
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md fixed-top bg-light" style="font-size:16px;height:67px;">
+        <div class="container-fluid"><a class="navbar-brand" href="/" style="font-size:40px;"><strong><em>Fridge</em></strong><em>Advisor</em></a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav ml-auto" style="margin:-12px;">
+
+
+                    <li class="nav-item" role="presentation"><a class="nav-link active" style="font-size:20px;">Hello + name </a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link text-success active" href="/" style="font-size:20px;">Logout</a></li>
+                </ul>
+        </div>
+        </div>
+    </nav>
+    <div>
+    <!-- hello 123 -->
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item"><a class="nav-link active" href="/profilePage" style="font-size:30px;">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="/fridge" style="font-size:30px;color:#60c52f;">Fridge</a></li>
+        </ul>
+    </div>
+    <div id="topDiv">
+        <div class="container-fluid" id="cont">
+            <div class="row" id="topRow">
+                <div class="col-md-6">
+                    <div id="profileCard" class="profile-card">
+                        <div class="profile-back" style="background-color:rgba(145,232,102,0.76);"></div><img class="rounded-circle profile-pic" src="assets/img/jozi.jpg"><h3 class="profile-name">Jozi Mobarik</h3><p>Email: <b>user@gmail.com</b></p>
+<p>Member since:  <b>12/02/2018</b>
+</p>
+<p>Total Items: <b>37</b></p><img src="assets/img/stars.png" id="stars"></div>
+                </div>
+                <div class="col">
+                    <div id="profileCard" class="profile-card"><img src="assets/img/recipes.png" id="chicken" class="img-fluid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <% include ../partials/footer %>
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
