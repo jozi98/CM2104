@@ -23,7 +23,7 @@ function getResultsFromOMDB(searchTerms){
 
 
    for(var i = 0;i<10;i++){
-// $('#results').empty();
+ $('#results').empty();
   var temp = jsondata.Search[i].Title;
 
       var url = "http://www.omdbapi.com/?i=tt3896198&apikey=ee6b8c16&t=" + temp + "&type=movie";
