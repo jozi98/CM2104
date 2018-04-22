@@ -1,14 +1,13 @@
 var express = require('express');
 var app = express();
-// var Twitter = require('twitter');
-// var client = new Twitter({
-//  consumer_key: 'wsk2GCAxUMM9i4eu4UyFyWrdF',
-//  consumer_secret: 'GYIJg9BaBeQY0E5e5g1KHBf3vm9Tlj6Vq51a0M36PbEsnF4pXR',
-//  access_token_key: '980911711422238730-t6bRCpUyYcZFk6RnH6Ct1ra9u51n1SM',
-//  access_token_secret: '6hoVseGhSfbUi4VfXEHMPwb9znmz2DLzp9PaHYytSG1gr'
-// });
-// import Quagga from 'quagga'; // ES6
-const Quagga = require('quagga').default; // Common JS (important: default)
+var Twitter = require('twitter');
+var client = new Twitter({
+ consumer_key: 'wsk2GCAxUMM9i4eu4UyFyWrdF',
+ consumer_secret: 'GYIJg9BaBeQY0E5e5g1KHBf3vm9Tlj6Vq51a0M36PbEsnF4pXR',
+ access_token_key: '980911711422238730-t6bRCpUyYcZFk6RnH6Ct1ra9u51n1SM',
+ access_token_secret: '6hoVseGhSfbUi4VfXEHMPwb9znmz2DLzp9PaHYytSG1gr'
+});
+
 
 app.use(express.static('public'))
 
