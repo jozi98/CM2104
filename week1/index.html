@@ -18,3 +18,323 @@
  <script src = "js/scripts.js"></scripts>
  </body>
  </html>
+
+
+
+
+
+/*
+<!--
+//=====================================================================================================
+// Value Symbol - 1.1
+//
+// File Name: sym-scValueSymbol.js
+//
+// Date Created:     22/12/2017
+// Date Unit Tested:     -
+//
+// Desc : Changes to include  a configuration panel item which draws a "C" in the same spot as the "M",
+//        the inclusion of Units of Measurment, inclusion of configurable condifuration color, added,
+//        Oval as selectable shape, and also refactored how web requests work.
+//=====================================================================================================
+// Value Symbol - 1.0
+//
+// File Name: sym-scValueSymbol-template.html
+//
+// Date Created:     05/12/2017
+// Date Unit Tested: 05/12/2017
+//
+// Version of PI Vision Tested Against: PI Vision 2017
+//
+// Desc: The HTML Template file for the Value PI Vision Extension; This symbol dynamically creates
+//       an outlined Value from datasource which is added to it, creating either a circle, diamond
+//       or sqaure. In addition to this, the circle can contain a multi-state, and an indicator
+//       displays whether the dataSource is manually input, or display user input text via the
+//       configuration panel.
+//
+// Author: Servelec Controls - Nyameye Otoo
+//
+//
+// Change Log------------------------------------------------------------------------------------------
+// Date                   Developer              Version       	    Comments
+// 05/12/2017               NO, NA                 1.0		        Initial Release
+// 22/12/2017                NO                    1.1		  Changed to satisfy SBM requirements
+//                                                            following 18/12/17 conference.            
+//
+// Code Review Log-------------------------------------------------------------------------------------
+// Date                   Reviewer               Version      	 	  Comments
+// 6/12/2017                LS                     1.0			           -
+//    -                     LS                     1.1			           -
+//===================================================================================================== 
+-->
+<div style="width:100%;height:100%">
+    <p ng-show="config.calculatedValue" ng-style="{'top': config.shape == 'diamond' ? '2px' :'-2px'}" style="position: absolute;right: 0px; color: #000000; font-weight:bold; font-size: 16px;transform:translateY(-100%); ">C</p>
+    <p ng-show="config.manualInput" ng-style="{'top': config.shape == 'diamond' ? '2px' :'-2px'}" style="position: absolute; right: 0px; color: #000000; font-weight: bold; font-size: 16px; transform: translateY(-100%); ">M</p>
+  
+      <svg ng-click="openAbnormalConfig()" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" style="cursor:pointer;overflow:visible;position:absolute;top:0px;left:0px">
+        <rect x="0" y="0" width="100" height="100" ng-attr-stroke-width="{{config.linewidth}}"
+              ng-attr-fill-opacity="{{config.fillOpacity}}" ng-attr-fill="{{config.fillColor}}" ng-attr-stroke="{{config.linecolor[multiStateValue%10] ? config.linecolor[multiStateValue%10] : '#000000'}}" ng-show="config.shape == 'square'"></rect>
+        <circle cx="50" cy="50" r="50" ng-attr-stroke-width="{{config.linewidth}}"
+                ng-attr-fill-opacity="{{config.fillOpacity}}" ng-attr-fill="{{config.fillColor}}" ng-attr-stroke="{{config.linecolor[multiStateValue%10] ? config.linecolor[multiStateValue%10] : '#000000'}}" ng-show="config.shape == 'circle'"></circle>
+        <ellipse rx="50" ry="35" cx="50" cy="50" r="50" ng-attr-stroke-width="{{config.linewidth}}"
+                ng-attr-fill-opacity="{{config.fillOpacity}}" ng-attr-fill="{{config.fillColor}}" ng-attr-stroke="{{config.linecolor[multiStateValue%10] ? config.linecolor[multiStateValue%10] : '#000000'}}" ng-show="config.shape == 'oval'"></ellipse>
+        <path d="M50,0 L100,50 L50,100 L0,50Z" ng-attr-stroke-width="{{config.linewidth}}"
+              ng-attr-fill-opacity="{{config.fillOpacity}}" ng-attr-fill="{{config.fillColor}}" ng-attr-stroke="{{config.linecolor[multiStateValue%10] ? config.linecolor[multiStateValue%10] : '#000000'}}" ng-show="config.shape == 'diamond'"></path>
+    </svg>
+
+    <p ng-attr-title="{{tooltip + UOM}}" style="position:relative;top:50%;left:0;transform:translateY(-50%)"
+       ng-style="{'font-family':config.font,'font-weight':config.fontWeight,'text-align':config.align,'font-size':config.fontSize + 'px','text-decoration':config.textdecoration, 'color':config.textcolor}">
+        <span ng-click="modifyTrend()" style="cursor:pointer" ng-if="text" ng-show="config.str == ''">{{data + (config.showUOM ? UOM : "")}}</span>
+        <span ng-click="modifyTrend()" style="cursor:pointer" ng-if="!text" ng-show="config.str == ''">{{(data | number: config.dp) + (config.showUOM ? UOM : "")}}</span>
+        <span ng-click="modifyTrend()" ng-show="config.str != ''">{{config.str + (config.showUOM ? UOM : "")}}</span>
+    </p>
+</div>
+
+
+
+
+
+
+
+*/
+
+*/
+
+if (!String.prototype.includes) {
+    String.prototype.includes = function (search, start) {
+        'use strict'
+        if (typeof start !== 'number') {
+            start = 0;
+        }
+        if (start + search.length > this.length) {
+            return false;
+        } else {
+            return this.indexOf(search, start) !== -1;
+        }
+    };
+}
+
+(function (PV) {
+    var symbolVis = function () { }
+    PV.deriveVisualizationFromBase(symbolVis);
+    symbolVis.prototype.init = function (scope, elem, $http, dp, dataPump) {
+        this.onDataUpdate = function (data) {
+            if (data) { 
+                if (data.Path) {
+                    scope.path = data.Path;
+                }
+                if (data.Units) {
+                    scope.UOM = " " + data.Units;
+                }
+                scope.timestamp = data.Time;
+
+                scope.text = checkIfTextValue(data.Value);
+
+
+                if (scope.text) {
+                    scope.data = data.Value;
+                } else {
+                    scope.data = scope.removeCommaSeparators(data.Value);
+                    scope.setDP(scope.data);
+                }
+
+                getManualInput();
+                getChildAttributes();
+
+            }
+        };
+
+        function checkIfTextValue(aValue) {
+            var isText = true;
+            var copyMinusCommas = scope.removeCommaSeparators(aValue);
+            if (copyMinusCommas.match(/^-?\d+$/) || copyMinusCommas.match(/^-?\d+\.\d+$/)) {
+                isText = false;
+            } else {
+
+            }
+            return isText;
+        }
+
+        this.onConfigChange = function () {
+            scope.config.textdecoration = ""
+            if (scope.config.underlined) { scope.config.textdecoration += "underline"; }
+        };
+
+        function getManualInput() {
+            $http({
+                method: 'GET',
+                url: location.origin + "/piwebapi/attributes?path=" + scope.path.split(/af:|pi:/)[1] + "&selectedFields=ConfigString",
+                //contentType: "application/json;charset=UTF-8", withCredentials: true
+            }).then(function (success) {
+                scope.pathToPoint = success.data.ConfigString ? cleanConfigString(success.data.ConfigString) : scope.path.split(/af:|pi:/)[1];
+                setManualInputFlag(scope.pathToPoint);
+            }, function error(data) {
+                console.log(data);
+            });
+        }
+
+        function buildBatchData() {
+            var request = {};
+            request[1] = {
+                "Method": "GET",
+                "Resource": location.origin + "/piwebapi/attributes?path=" + scope.path.split("af:")[1]
+            };
+
+            request[2] = {
+                "Method": "GET",
+                "Resource": "{0}?nameFilter=Alarm Tag",
+                "Parameters": ["$.1.Content.Links.Attributes"],
+                "ParentIds": ["1"]
+            };
+            request[3] = {
+                "Method": "GET",
+                "Resource": "$.2.Content.Items[*].Links.Value",
+                "ParentIds": ["2"]
+            };
+            if (scope.path.includes("af:")) {
+                request[4] = {
+                    "Method": "GET",
+                    "Resource": location.origin + "/piwebapi/attributes?path=" + scope.path.split("af:")[1].split("|")[0] + "|Abnormal Behaviour App Url"
+                };
+                request[5] = {
+                    "Method": "GET",
+                    "Resource": "$.4.Content.Links.Value",
+                    "ParentIds": ["4"]
+                };
+            }
+            return request;
+
+        }
+
+        scope.openAbnormalConfig = function () {
+            if (scope.url) {
+                if (!dp.layoutMode) {
+                    var tag = scope.pathToPoint.split("\\").pop();
+                    window.open(scope.url + tag);
+                }
+            }
+        }
+
+        scope.modifyTrend = function () {
+            if (scope.config.selectedTrend) {
+                var datasources = dp.getSymbolByName(scope.config.selectedTrend).DataSources;
+
+                for (var i = 0; i < datasources.length; i++) {
+                    if (datasources[i].indexOf("pi") != -1 && datasources[i].indexOf("?") > -1) {
+                        var datasource2 = datasources[i].split("?");
+                        datasource2[1] = datasource2[1].split("\\");
+                        var newSource = datasource2[0] + "\\" + datasource2[1][1]
+                        datasources[i] = newSource;
+                    }
+                }
+
+                var match = datasources.indexOf(scope.path);
+
+                if (match > -1) {
+                    datasources.splice(match, 1);
+                } else {
+                    datasources.push(scope.path);
+                }
+
+                dataPump.requestUpdate();
+            }
+        }
+
+        scope.setDP = function (number) {
+            if (parseFloat(number) > -10 && parseFloat(number) < 10) {
+                scope.config.dp = 2;
+            } else if (parseFloat(number) > -100 && parseFloat(number) < 100) {
+                scope.config.dp = 1;
+            } else {
+                scope.config.dp = 0;
+            }
+        }
+
+        scope.removeCommaSeparators = function (numberAsString) {
+            return numberAsString.replace(/,/g, "");
+        }
+
+
+
+        function getChildAttributes() {
+            $http({
+                method: 'POST',
+                url: location.origin + "/piwebapi/batch",
+                //contentType: "application/json;charset=UTF-8",
+                data: buildBatchData(),
+                withCredentials: true
+            }).then(function (success) {
+                scope.multiStateValue = success.data[3].Content.Value != "" ? success.data[3].Content.Value : 10;
+                //if()
+                var hasUrl = success.data[5] && success.data[5].Content && success.data[5].Content.Value;
+                scope.url = hasUrl ? success.data[5].Content.Value : null;
+                scope.tooltip = scope.pathToPoint + "\nTime: " + scope.timestamp + "\nValue: " + scope.data;
+
+            }, function error(data) {
+                console.log(data);
+            });
+        }
+
+        function setManualInputFlag(path) {
+            if (path != "...") {
+                if (path.search(/-[\w]G-|-[\W]G-/g) > -1) {
+                    scope.config.manualInput = true;
+                } else {
+                    scope.config.manualInput = false;
+                }
+            } else {
+                scope.config.manualInput = false;
+            }
+        }
+
+        function cleanConfigString(configString) {
+            var cleanConfig = configString.split("?");
+            cleanConfig = cleanConfig[0] + "\\" + cleanConfig[1].split("\\")[1].split("?")[0];
+
+            return cleanConfig;
+        }
+    }
+
+    var definition = {
+        typeName: 'scStatusIndicatorBP',
+        datasourceBehavior: PV.Extensibility.Enums.DatasourceBehaviors.Multiple,
+        iconUrl: 'Images/scValueSymbol.svg',
+        getDefaultConfig: function () {
+            return config = {
+                DataShape: 'TimeSeries',
+                Height: 75,
+                Width: 75,
+                fontSize: 16,
+                shape: "square",
+                font: "arial",
+                fillOpacity: 0.99,
+                align: "center",
+                //dp: setDP(),
+                manualInput: false,
+                fillColor: "#ffffff",
+                linewidth: 4,
+                linecolor: ["#000000", "#f56e23", "#c11302"],
+                textcolor: "#000000",
+                showUOM: false,
+                underlined: false,
+                str: "",
+                tooltip: "...",
+                fontWeight: 400,
+                //DataQueryMode: PV.Extensibility.Enums.DataQueryMode.ModeSingleton
+            };
+        },
+        configOptions: function () {
+            return [{
+                title: 'Format Symbol',
+                mode: 'format'
+            }];
+        },
+        visObjectType: symbolVis,
+        inject: ['$http', 'displayProvider', 'dataPump'],
+    };
+    PV.symbolCatalog.register(definition);
+})(window.PIVisualization);
+
+
+
+*/
